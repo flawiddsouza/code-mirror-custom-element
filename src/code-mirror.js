@@ -71,9 +71,6 @@ function createState(language, documentText, updateCallback) {
 class CodeMirror extends CustomElement {
     constructor() {
         super()
-        this.lang = this.getAttribute('lang') ?? 'javascript'
-        this.value = this.getAttribute('value') ?? ''
-        this.editor = null
     }
 
     static get observedAttributes() {
@@ -84,6 +81,10 @@ class CodeMirror extends CustomElement {
     }
 
     connectedCallback() {
+        this.lang = this.getAttribute('lang') ?? 'javascript'
+        this.value = this.getAttribute('value') ?? ''
+        this.editor = null
+
         this.shadowRoot.innerHTML = /* html */ `
             <div id="code-mirror-editor"></div>
             <style>

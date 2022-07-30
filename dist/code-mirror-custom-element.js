@@ -13102,8 +13102,7 @@ function em(n, e, t) {
 }
 class tm extends yc {
   constructor() {
-    var e, t;
-    super(), this.lang = (e = this.getAttribute("lang")) != null ? e : "javascript", this.value = (t = this.getAttribute("value")) != null ? t : "", this.editor = null;
+    super();
   }
   static get observedAttributes() {
     return ["lang", "value"];
@@ -13111,7 +13110,8 @@ class tm extends yc {
   attributeChangedCallback(e, t, i) {
   }
   connectedCallback() {
-    this.shadowRoot.innerHTML = `
+    var e, t;
+    this.lang = (e = this.getAttribute("lang")) != null ? e : "javascript", this.value = (t = this.getAttribute("value")) != null ? t : "", this.editor = null, this.shadowRoot.innerHTML = `
             <div id="code-mirror-editor"></div>
             <style>
             #code-mirror-editor .cm-editor.cm-focused {
@@ -13150,8 +13150,8 @@ class tm extends yc {
             }
             </style>
         `, this.editor = new k({
-      state: em(this.lang, this.value, (e) => {
-        this.value = e, this.dispatchEvent(new Event("input"));
+      state: em(this.lang, this.value, (i) => {
+        this.value = i, this.dispatchEvent(new Event("input"));
       }),
       parent: this.shadowRoot.querySelector("#code-mirror-editor")
     }), this.editor.focus();

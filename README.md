@@ -1,5 +1,7 @@
 ### Install
+```sh
 npm i code-mirror-custom-element
+```
 
 ### Usage:
 ```js

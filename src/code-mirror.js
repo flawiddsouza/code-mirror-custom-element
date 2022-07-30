@@ -4,7 +4,8 @@ import {
     highlightActiveLine,
     keymap,
     highlightSpecialChars,
-    lineNumbers
+    lineNumbers,
+    highlightActiveLineGutter
 } from '@codemirror/view'
 import { EditorState } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
@@ -40,6 +41,7 @@ function createState(language, documentText, updateCallback) {
             history(),
             lineNumbers(),
             highlightActiveLine(),
+            highlightActiveLineGutter(),
             highlightSpecialChars(),
             highlightSelectionMatches(),
             indentOnInput(),
@@ -133,7 +135,9 @@ class CodeMirror extends CustomElement {
             parent: this.shadowRoot.querySelector('#code-mirror-editor')
         })
 
-        this.editor.focus()
+        if(this.hasAttribute('autofocus')) {
+            this.editor.focus()
+        }
     }
 }
 

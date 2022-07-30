@@ -1,6 +1,6 @@
 {
     "name": "code-mirror-custom-element",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "module",
     "main": "dist/code-mirror-custom-element.js",
     "exports": {

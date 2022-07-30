@@ -1,6 +1,6 @@
 {
     "name": "code-mirror-custom-element",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "module",
     "main": "dist/code-mirror-custom-element.js",
     "exports": {
@@ -11,16 +11,18 @@
     ],
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "prepare": "husky install"
     },
     "devDependencies": {
-        "vite": "^3.0.0",
         "@codemirror/autocomplete": "^6.1.0",
         "@codemirror/commands": "^6.0.1",
         "@codemirror/lang-javascript": "^6.0.2",
         "@codemirror/language": "^6.2.1",
         "@codemirror/search": "^6.0.1",
         "@codemirror/state": "^6.1.0",
-        "@codemirror/view": "^6.1.2"
+        "@codemirror/view": "^6.1.2",
+        "husky": "^8.0.1",
+        "vite": "^3.0.0"
     }
 }

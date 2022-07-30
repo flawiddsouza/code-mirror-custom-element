@@ -1,27 +1,92 @@
-import { html, css, LitElement } from 'lit'
+import { CustomElement } from './custom-element'
+import {
+    EditorView,
+    highlightActiveLine,
+    keymap,
+    highlightSpecialChars,
+    lineNumbers
+} from '@codemirror/view'
+import { EditorState } from '@codemirror/state'
+import { javascript } from '@codemirror/lang-javascript'
+import {
+    defaultHighlightStyle,
+    syntaxHighlighting,
+    indentOnInput,
+    indentUnit,
+    bracketMatching,
+    foldGutter,
+    foldKeymap
+} from '@codemirror/language'
+import {
+    defaultKeymap,
+    history,
+    indentWithTab,
+    historyKeymap
+} from '@codemirror/commands'
+import { searchKeymap, highlightSelectionMatches } from '@codemirror/search'
+import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete'
 
-class CodeMirror extends LitElement {
-    static get properties() {
-        return {
-            value: {
-                type: String
-            }
-        }
+function createState(language, documentText, updateCallback) {
+    let languageFunc = null
+
+    if (language === 'javascript') {
+        languageFunc = javascript()
     }
 
+    return EditorState.create({
+        doc: documentText,
+        extensions: [
+            languageFunc,
+            history(),
+            lineNumbers(),
+            highlightActiveLine(),
+            highlightSpecialChars(),
+            highlightSelectionMatches(),
+            indentOnInput(),
+            indentUnit.of('    '), // 4 spaces
+            syntaxHighlighting(defaultHighlightStyle, {fallback: true}),
+            bracketMatching(),
+            closeBrackets(),
+            foldGutter({ openText: '▾', closedText: '▸' }),
+            autocompletion(),
+            EditorView.lineWrapping,
+            EditorView.updateListener.of((v) => {
+                if (v.docChanged) {
+                    updateCallback(v.state.doc.toString())
+                }
+            }),
+            keymap.of([
+                ...defaultKeymap,
+                ...historyKeymap,
+                indentWithTab,
+                ...searchKeymap,
+                ...foldKeymap,
+                ...completionKeymap,
+                ...closeBracketsKeymap
+            ])
+        ]
+    })
+}
+
+class CodeMirror extends CustomElement {
     constructor() {
         super()
-        this.value = ''
+        this.lang = this.getAttribute('lang') ?? 'javascript'
+        this.value = this.getAttribute('value') ?? ''
+        this.editor = null
     }
 
-    render() {
-        return html`
-            <div id="code-mirror-editor">${this.value}</div>
-        `
+    static get observedAttributes() {
+        return ['lang', 'value']
     }
 
-    static get styles() {
-        return css`
+    attributeChangedCallback(name, oldValue, newValue) {
+    }
+
+    connectedCallback() {
+        this.shadowRoot.innerHTML = /* html */ `
+            <div id="code-mirror-editor"></div>
+            <style>
             #code-mirror-editor .cm-editor.cm-focused {
                 outline: 0 !important;
             }
@@ -33,7 +98,7 @@ class CodeMirror extends LitElement {
             }
 
             #code-mirror-editor .cm-scroller {
-                font-family: var(--font-monospace);
+                font-family: Menlo, Monaco, Consolas, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback';
                 font-size: 14px;
                 overflow: auto;
             }
@@ -56,8 +121,19 @@ class CodeMirror extends LitElement {
             #code-mirror-editor .cm-editor {
                 height: 100%;
             }
+            </style>
         `
+
+        this.editor = new EditorView({
+            state: createState(this.lang, this.value, (value) => {
+                this.value = value
+                this.dispatchEvent(new Event('input'))
+            }),
+            parent: this.shadowRoot.querySelector('#code-mirror-editor')
+        })
+
+        this.editor.focus()
     }
 }
 
-window.customElements.define('code-mirror', CodeMirror)
+customElements.define('code-mirror', CodeMirror)

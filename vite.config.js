@@ -5,9 +5,6 @@ export default defineConfig({
         lib: {
             entry: 'src/code-mirror.js',
             formats: ['es']
-        },
-        rollupOptions: {
-            external: /^lit/
         }
     }
 })

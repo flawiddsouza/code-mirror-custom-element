@@ -90,6 +90,11 @@ class CodeMirror extends CustomElement {
         this.shadowRoot.innerHTML = /* html */ `
             <div id="code-mirror-editor"></div>
             <style>
+            :host {
+                display: block;
+                height: 100%;
+            }
+
             #code-mirror-editor .cm-editor.cm-focused {
                 outline: 0 !important;
             }
@@ -106,9 +111,14 @@ class CodeMirror extends CustomElement {
                 overflow: auto;
             }
 
-            #code-mirror-editor .cm-activeLine,
-            #code-mirror-editor .cm-activeLineGutter {
+            #code-mirror-editor .cm-editor.cm-focused .cm-activeLine,
+            #code-mirror-editor .cm-editor.cm-focused .cm-activeLineGutter {
                 background-color: rgb(130, 130, 130, 0.1);
+            }
+
+            #code-mirror-editor .cm-editor:not(.cm-focused) .cm-activeLine,
+            #code-mirror-editor .cm-editor:not(.cm-focused) .cm-activeLineGutter {
+                background-color: transparent;
             }
 
             #code-mirror-editor .cm-foldGutter span {

@@ -14,7 +14,7 @@ import 'code-mirror-custom-element'
 
 ### To use in browser, without npm:
 
-Download [dist/code-mirror-custom-element.js](dist/code-mirror-custom-element.js?raw=true)
+Download [dist/code-mirror-custom-element.js](https://github.com/flawiddsouza/code-mirror-custom-element/blob/main/dist/code-mirror-custom-element.js?raw=true)
 
 In your html file, add:
 ```html
@@ -23,3 +23,7 @@ In your html file, add:
 ```
 
 And you're done.
+
+### Caveats:
+
+Only lang="javascript" is supported as of now. Please [create an issue in github](https://github.com/flawiddsouza/code-mirror-custom-element/issues/new) to add support for the language you want.

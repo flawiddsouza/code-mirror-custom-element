@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Code Fiddle</title>
+    <style>
+    html, body, main {
+        height: 100%;
+    }
+
+    body {
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .editor-area {
+        display: grid;
+        grid-template-rows: auto 1fr;
+    }
+
+    .editor-label {
+        background-color: #e1e1ff;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid darkgrey;
+    }
+
+    .editor-area:not(:first-of-type) > .editor-label {
+        border-top: 1px solid darkgrey;
+    }
+
+    .left-container {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        overflow-y: auto;
+    }
+
+    .right-container {
+        border: 0;
+        border-left: 1px solid darkgrey;
+        height: 100%;
+        width: calc(100% - 1px);
+    }
+
+    nav {
+        border-bottom: 1px solid darkgrey;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+    </style>
+</head>
+
+<body>
+    <main style="display: grid; grid-template-rows: auto 1fr">
+        <nav>
+            <div style="margin-right: 1rem">
+                <select id="template-selector">
+                    <option>Clean</option>
+                    <option>Vue 3</option>
+                </select>
+                <button id="load-template">Load Template</button>
+            </div>
+        </nav>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; height: 100%">
+            <div class="left-container">
+                <div class="editor-area">
+                    <div class="editor-label">JS</div>
+                    <code-mirror lang="javascript" id="js" style="overflow-y: auto"></code-mirror>
+                </div>
+                <div class="editor-area">
+                    <div class="editor-label">HTML</div>
+                    <code-mirror lang="javascript" id="html" style="overflow-y: auto"></code-mirror>
+                </div>
+                <div class="editor-area">
+                    <div class="editor-label">CSS</div>
+                    <code-mirror lang="javascript" id="css" style="overflow-y: auto"></code-mirror>
+                </div>
+            </div>
+            <iframe class="right-container" id="iframe"></iframe>
+        </div>
+    </main>
+
+    <script type="module" src="https://cdn.skypack.dev/code-mirror-custom-element"></script>
+    <script src="main.js"></script>
+</body>
+</html>

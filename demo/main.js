@@ -91,6 +91,8 @@ function loadTemplate(template) {
 
     css.setAttribute('value', cssCode)
     setKey('css', cssCode)
+
+    refreshIframe()
 }
 
 js.addEventListener('input', () => {
@@ -118,4 +120,4 @@ css.setAttribute('value', getKey('css') ?? '')
 
 setTimeout(() => {
     refreshIframe()
-}, 500)
+}, 1000)

@@ -33,7 +33,7 @@
 
     .left-container {
         display: grid;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(3, calc(calc(100vh / 3) - 0.66rem));
         overflow-y: auto;
     }
 
@@ -81,7 +81,7 @@
                     <code-mirror lang="css" id="css" style="overflow-y: auto"></code-mirror>
                 </div>
             </div>
-            <iframe class="right-container" id="iframe"></iframe>
+            <iframe class="right-container" id="iframe" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
     </main>
 

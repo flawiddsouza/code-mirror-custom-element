@@ -89,7 +89,24 @@ class CodeMirror extends CustomElement {
         return ['lang', 'value']
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(name, _oldValue, newValue) {
+        if(!this.editor) {
+            return
+        }
+
+        if(name === 'lang') {
+            this.editor.setState(createState(newValue, this.value, (value) => {
+                this.value = value
+                this.dispatchEvent(new Event('input'))
+            }))
+        }
+
+        if(name === 'value') {
+            this.editor.setState(createState(this.lang, newValue, (value) => {
+                this.value = value
+                this.dispatchEvent(new Event('input'))
+            }))
+        }
     }
 
     connectedCallback() {

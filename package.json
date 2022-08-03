@@ -1,7 +1,9 @@
 {
     "name": "code-mirror-custom-element",
-    "version": "1.0.6",
+    "version": "1.0.8",
+    "description": "CodeMirror 6 as a custom element (web component)",
     "repository": "github:flawiddsouza/code-mirror-custom-element",
+    "license": "MIT",
     "type": "module",
     "main": "dist/code-mirror-custom-element.js",
     "exports": {
@@ -18,6 +20,8 @@
     "devDependencies": {
         "@codemirror/autocomplete": "^6.1.0",
         "@codemirror/commands": "^6.0.1",
+        "@codemirror/lang-css": "^6.0.0",
+        "@codemirror/lang-html": "^6.1.0",
         "@codemirror/lang-javascript": "^6.0.2",
         "@codemirror/language": "^6.2.1",
         "@codemirror/search": "^6.0.1",

@@ -1,3 +1,7 @@
+# CodeMirror Custom Element [![NPM version](https://img.shields.io/npm/v/code-mirror-custom-element)](https://www.npmjs.org/package/code-mirror-custom-element)
+
+CodeMirror 6 as a custom element (web component)
+
 ### Install
 ```sh
 npm i code-mirror-custom-element
@@ -26,4 +30,4 @@ And you're done.
 
 ### Caveats:
 
-Only lang="javascript" is supported as of now. Please [create an issue in github](https://github.com/flawiddsouza/code-mirror-custom-element/issues/new) to add support for the language you want.
+Supported languages are "javascript", "html" and "css". Please [create an issue in github](https://github.com/flawiddsouza/code-mirror-custom-element/issues/new) to add support for the language you want.

@@ -8,7 +8,6 @@ import {
     highlightActiveLineGutter
 } from '@codemirror/view'
 import { EditorState } from '@codemirror/state'
-import { javascript } from '@codemirror/lang-javascript'
 import {
     defaultHighlightStyle,
     syntaxHighlighting,
@@ -26,12 +25,23 @@ import {
 } from '@codemirror/commands'
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search'
 import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete'
+import { javascript } from '@codemirror/lang-javascript'
+import { html } from '@codemirror/lang-html'
+import { css } from '@codemirror/lang-css'
 
 function createState(language, documentText, updateCallback) {
     let languageFunc = null
 
     if (language === 'javascript') {
         languageFunc = javascript()
+    }
+
+    if (language === 'html') {
+        languageFunc = html()
+    }
+
+    if (language === 'css') {
+        languageFunc = css()
     }
 
     return EditorState.create({

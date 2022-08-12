@@ -56,11 +56,11 @@ function getGeneratedPageURL({ html, css, js }) {
     return getBlobURL(source, 'text/html')
 }
 
-function refreshIframe() {
+function refreshIframe(overrides={}) {
     const url = getGeneratedPageURL({
-        js: js.value,
-        html: html.value,
-        css: css.value
+        js: 'js' in overrides ? overrides.js : js.value,
+        html: 'html' in overrides ? overrides.html : html.value,
+        css: 'css' in overrides ? overrides.css : css.value
     })
     iframe.src = url
 }
@@ -92,7 +92,11 @@ function loadTemplate(template) {
     css.setAttribute('value', cssCode)
     setKey('css', cssCode)
 
-    refreshIframe()
+    refreshIframe({
+        js: js.getAttribute('value'),
+        html: html.getAttribute('value'),
+        css: css.getAttribute('value')
+    })
 }
 
 js.addEventListener('input', () => {
@@ -118,6 +122,8 @@ js.setAttribute('value', getKey('js') ?? '')
 html.setAttribute('value', getKey('html') ?? '')
 css.setAttribute('value', getKey('css') ?? '')
 
-setTimeout(() => {
-    refreshIframe()
-}, 1000)
+refreshIframe({
+    js: js.getAttribute('value'),
+    html: html.getAttribute('value'),
+    css: css.getAttribute('value')
+})

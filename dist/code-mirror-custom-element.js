@@ -15113,6 +15113,10 @@ class bQ extends kf {
                 height: 100%;
             }
 
+            #code-mirror-editor {
+                height: 100%;
+            }
+
             #code-mirror-editor .cm-editor.cm-focused {
                 outline: 0 !important;
             }

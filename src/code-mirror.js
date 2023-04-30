@@ -122,6 +122,10 @@ class CodeMirror extends CustomElement {
                 height: 100%;
             }
 
+            #code-mirror-editor {
+                height: 100%;
+            }
+
             #code-mirror-editor .cm-editor.cm-focused {
                 outline: 0 !important;
             }

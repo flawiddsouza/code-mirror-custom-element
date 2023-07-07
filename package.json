@@ -1,6 +1,6 @@
 {
     "name": "code-mirror-custom-element",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "CodeMirror 6 as a custom element (web component)",
     "repository": "github:flawiddsouza/code-mirror-custom-element",
     "homepage": "https://flawiddsouza.github.io/code-mirror-custom-element/",

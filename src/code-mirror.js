@@ -4,6 +4,7 @@ import {
     highlightActiveLine,
     keymap,
     highlightSpecialChars,
+    drawSelection,
     lineNumbers,
     highlightActiveLineGutter
 } from '@codemirror/view'
@@ -54,6 +55,13 @@ function createState(language, documentText, updateCallback) {
             highlightActiveLineGutter(),
             highlightSpecialChars(),
             highlightSelectionMatches(),
+            // having drawSelection allows you to have the selection highlighting
+            // when you do ctrl-d to select the next match of the selected text
+            // otherwise when ctrl-d selects the next match, you won't see any
+            // selection highlighting
+            // quick trivia: ctrl+d comes from searchKeymap - i thought it came
+            // with the defaultKeymap but guess not
+            drawSelection(),
             indentOnInput(),
             indentUnit.of('    '), // 4 spaces
             syntaxHighlighting(defaultHighlightStyle, {fallback: true}),

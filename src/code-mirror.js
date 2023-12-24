@@ -133,6 +133,7 @@ class CodeMirror extends CustomElement {
             :host {
                 display: block;
                 height: 100%;
+                overflow: auto;
             }
 
             #code-mirror-editor {

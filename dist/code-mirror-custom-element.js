@@ -15310,6 +15310,7 @@ class XQ extends Af {
             :host {
                 display: block;
                 height: 100%;
+                overflow: auto;
             }
 
             #code-mirror-editor {

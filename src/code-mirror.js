@@ -29,6 +29,7 @@ import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } 
 import { javascript } from '@codemirror/lang-javascript'
 import { html } from '@codemirror/lang-html'
 import { css } from '@codemirror/lang-css'
+import { json } from '@codemirror/lang-json'
 
 function createState(language, documentText, updateCallback) {
     let languageFunc = null
@@ -43,6 +44,10 @@ function createState(language, documentText, updateCallback) {
 
     if (language === 'css') {
         languageFunc = css()
+    }
+
+    if (language === 'json') {
+        languageFunc = json()
     }
 
     return EditorState.create({
